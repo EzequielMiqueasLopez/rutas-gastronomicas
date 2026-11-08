@@ -1,0 +1,239 @@
+:root {
+  color-scheme: dark;
+  --fondo: #170d21;
+  --superficie: #26143a;
+  --borde: #4b2a6b;
+  --texto: #fff3dc;
+  --suave: #cbb5dd;
+  --calendula: #ff9f1c;
+  --magenta: #f0439a;
+  --morado: #8e44ec;
+  --turquesa: #2ec4b6;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--texto);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background:
+    radial-gradient(circle at 12% 0%, #5a1f7a55, transparent 45%),
+    radial-gradient(circle at 90% 20%, #ff9f1c18, transparent 40%),
+    var(--fondo);
+  min-height: 100vh;
+}
+
+.contenedor { max-width: 1000px; margin: 0 auto; padding: 0 20px 60px; }
+
+/* ---------- Barra superior y papel picado ---------- */
+.barra { background: #120819; border-bottom: 2px solid var(--calendula); }
+.barra .contenedor { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; }
+.logo { font-size: 1.25rem; font-weight: 700; color: var(--calendula); letter-spacing: .3px; }
+.sesion { display: flex; align-items: center; gap: 12px; font-size: .95rem; }
+.insignia { background: #ff9f1c22; color: var(--calendula); padding: 2px 10px; border-radius: 999px; font-size: .8rem; border: 1px solid #ff9f1c55; }
+
+.papel-picado {
+  height: 30px;
+  background: repeating-linear-gradient(90deg,
+    #ff9f1c 0 40px, #f0439a 40px 80px, #8e44ec 80px 120px, #2ec4b6 120px 160px);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='30'%3E%3Cpolygon points='0,0 40,0 20,30'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='30'%3E%3Cpolygon points='0,0 40,0 20,30'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  opacity: .9;
+}
+
+/* ---------- Portada ---------- */
+.hero { padding: 36px 0 10px; }
+.hero h1 {
+  margin: 0 0 8px;
+  font-size: 2.1rem;
+  background: linear-gradient(90deg, var(--calendula), var(--magenta));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero p { margin: 0; color: var(--suave); }
+
+/* ---------- Formularios ---------- */
+.tarjeta-auth { max-width: 380px; background: var(--superficie); border: 1px solid var(--borde); border-top: 3px solid var(--calendula); border-radius: 14px; padding: 24px; margin: 30px 0; }
+.tarjeta-auth h2 { margin-top: 0; }
+
+label { display: block; font-size: .9rem; color: var(--suave); }
+input { width: 100%; padding: 10px 12px; margin: 6px 0 14px; background: var(--fondo); color: var(--texto); border: 1px solid var(--borde); border-radius: 8px; font-size: 1rem; }
+input:focus { outline: none; border-color: var(--calendula); }
+
+button { cursor: pointer; border: none; border-radius: 8px; padding: 10px 16px; font-size: .95rem; background: linear-gradient(90deg, var(--calendula), #ffb84d); color: #2a1200; font-weight: 700; }
+button:hover { filter: brightness(1.1); }
+button.secundario { background: transparent; color: var(--calendula); border: 1px solid var(--calendula); }
+button.enlace { background: none; color: var(--calendula); padding: 0; text-decoration: underline; font-weight: 400; }
+
+.error { color: #ff7b9c; }
+.ok { color: #7bd88f; }
+
+h2 { margin: 40px 0 16px; font-size: 1.35rem; color: var(--calendula); }
+
+/* ---------- Tarjetas ---------- */
+.rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+.tarjeta { background: var(--superficie); border: 1px solid var(--borde); border-radius: 14px; padding: 18px; }
+.tarjeta h3 { margin: 0 0 8px; font-size: 1.05rem; }
+.tarjeta p { margin: 4px 0; color: var(--suave); font-size: .92rem; }
+
+.tarjeta-negocio {
+  position: relative;
+  cursor: pointer;
+  border-top: 3px solid var(--magenta);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.tarjeta-negocio:hover,
+.tarjeta-negocio:focus-visible {
+  transform: scale(1.06) translateY(-4px);
+  box-shadow: 0 14px 34px #ff9f1c40;
+  border-color: var(--calendula);
+  z-index: 2;
+  outline: none;
+}
+.tarjeta-negocio .insignia { display: inline-block; margin-bottom: 8px; }
+.ver-menu { margin-top: 12px !important; color: var(--calendula) !important; font-weight: 700; }
+
+/* ---------- Tabla (admin) ---------- */
+.tabla-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; background: var(--superficie); border-radius: 12px; overflow: hidden; }
+th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--borde); }
+th { color: var(--suave); font-weight: 600; font-size: .85rem; text-transform: uppercase; }
+
+/* ---------- Rutas ---------- */
+.rejilla-rutas { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px; }
+.rejilla-rutas .tarjeta { border-top: 3px solid var(--morado); }
+.ruta-cabecera { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.ruta-cabecera h3 { margin: 0; }
+.datos-ruta { display: flex; gap: 14px; flex-wrap: wrap; margin: 8px 0 14px; color: var(--suave); font-size: .9rem; }
+.paradas { list-style: none; margin: 14px 0 0 12px; padding: 0; border-left: 2px solid #f0439a66; }
+.paradas li { position: relative; padding: 0 0 14px 22px; }
+.paradas li::before { content: attr(data-orden); position: absolute; left: -13px; top: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--magenta); color: #fff; font-weight: 700; font-size: .8rem; display: flex; align-items: center; justify-content: center; }
+.paradas strong { display: block; }
+.paradas small { color: var(--suave); }
+
+/* ---------- Lista de platillos ---------- */
+.platillos { list-style: none; margin: 12px 0 0; padding: 12px 0 0; border-top: 1px solid var(--borde); }
+.platillos li { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; font-size: .95rem; border-bottom: 1px dashed #4b2a6b88; }
+.platillos li span:last-child { color: var(--calendula); font-weight: 700; }
+
+/* ---------- Ventana emergente (modal) ---------- */
+.fondo-modal {
+  position: fixed; inset: 0; z-index: 100;
+  background: #0b0510cc;
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  animation: aparecer .2s ease;
+}
+.modal {
+  position: relative;
+  width: 100%; max-width: 520px; max-height: 88vh; overflow-y: auto;
+  background: var(--superficie);
+  border: 1px solid var(--calendula);
+  border-top: 5px solid var(--magenta);
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: 0 20px 60px #000a;
+  animation: subir .25s ease;
+}
+.modal h2 { margin: 0 0 8px; color: var(--texto); }
+.modal h3 { margin: 22px 0 0; color: var(--calendula); }
+.modal p { margin: 4px 0; color: var(--suave); }
+button.cerrar { position: absolute; top: 10px; right: 12px; background: transparent; color: var(--suave); font-size: 1.7rem; padding: 0 10px; line-height: 1; }
+button.cerrar:hover { color: var(--calendula); }
+
+@keyframes aparecer { from { opacity: 0; } to { opacity: 1; } }
+@keyframes subir { from { opacity: 0; transform: translateY(20px) scale(.97); } to { opacity: 1; transform: none; } }
+
+/* =====================================================================
+   DECORACIÓN DÍA DE MUERTOS (dibujos propios en SVG)
+   ===================================================================== */
+:root {
+  --flor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3Cellipse id='p' cx='50' cy='22' rx='9' ry='20'/%3E%3C/defs%3E%3Cg fill='rgb(255,159,28)'%3E%3Cuse href='%23p'/%3E%3Cuse href='%23p' transform='rotate(45 50 50)'/%3E%3Cuse href='%23p' transform='rotate(90 50 50)'/%3E%3Cuse href='%23p' transform='rotate(135 50 50)'/%3E%3Cuse href='%23p' transform='rotate(180 50 50)'/%3E%3Cuse href='%23p' transform='rotate(225 50 50)'/%3E%3Cuse href='%23p' transform='rotate(270 50 50)'/%3E%3Cuse href='%23p' transform='rotate(315 50 50)'/%3E%3C/g%3E%3Cg fill='rgb(255,200,70)' transform='rotate(22 50 50) translate(50 50) scale(.62) translate(-50 -50)'%3E%3Cuse href='%23p'/%3E%3Cuse href='%23p' transform='rotate(45 50 50)'/%3E%3Cuse href='%23p' transform='rotate(90 50 50)'/%3E%3Cuse href='%23p' transform='rotate(135 50 50)'/%3E%3Cuse href='%23p' transform='rotate(180 50 50)'/%3E%3Cuse href='%23p' transform='rotate(225 50 50)'/%3E%3Cuse href='%23p' transform='rotate(270 50 50)'/%3E%3Cuse href='%23p' transform='rotate(315 50 50)'/%3E%3C/g%3E%3Ccircle cx='50' cy='50' r='9' fill='rgb(200,90,10)'/%3E%3C/svg%3E");
+
+  --calavera: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 96'%3E%3Crect x='22' y='58' width='36' height='26' rx='6' fill='rgb(255,243,220)'/%3E%3Cellipse cx='40' cy='36' rx='28' ry='30' fill='rgb(255,243,220)'/%3E%3Ccircle cx='28' cy='34' r='9' fill='rgb(142,68,236)'/%3E%3Ccircle cx='28' cy='34' r='5' fill='rgb(23,13,33)'/%3E%3Ccircle cx='52' cy='34' r='9' fill='rgb(142,68,236)'/%3E%3Ccircle cx='52' cy='34' r='5' fill='rgb(23,13,33)'/%3E%3Cpath d='M40 44 l-4 9 h8 z' fill='rgb(23,13,33)'/%3E%3Ccircle cx='40' cy='13' r='3.5' fill='rgb(240,67,154)'/%3E%3Ccircle cx='28' cy='17' r='2.5' fill='rgb(46,196,182)'/%3E%3Ccircle cx='52' cy='17' r='2.5' fill='rgb(46,196,182)'/%3E%3Ccircle cx='19' cy='47' r='3' fill='rgb(255,159,28)'/%3E%3Ccircle cx='61' cy='47' r='3' fill='rgb(255,159,28)'/%3E%3Cpath d='M26 66 h28 M31 66 v14 M36 66 v14 M40 66 v14 M44 66 v14 M49 66 v14' stroke='rgb(23,13,33)' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+
+  --petalos-a: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cg fill='rgb(255,159,28)'%3E%3Cellipse rx='4' ry='8' transform='translate(40 60) rotate(30)'/%3E%3Cellipse rx='4' ry='8' transform='translate(210 20) rotate(-40)'/%3E%3Cellipse rx='4' ry='8' transform='translate(120 200) rotate(70)'/%3E%3Cellipse rx='4' ry='8' transform='translate(285 250) rotate(10)'/%3E%3C/g%3E%3C/svg%3E");
+
+  --petalos-b: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='460' height='460'%3E%3Cg fill='rgb(240,67,154)'%3E%3Cellipse rx='3' ry='6' transform='translate(90 120) rotate(-20)'/%3E%3Cellipse rx='3' ry='6' transform='translate(330 60) rotate(50)'/%3E%3Cellipse rx='3' ry='6' transform='translate(250 330) rotate(-60)'/%3E%3Cellipse rx='3' ry='6' transform='translate(60 400) rotate(25)'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Patrón sutil de flores de cempasúchil en todo el fondo */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--flor) 0 0 / 70px 70px space;
+  opacity: .06;
+}
+
+/* Pétalos cayendo despacio */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: .7;
+  background-image: var(--petalos-a), var(--petalos-b);
+  background-size: 320px 320px, 460px 460px;
+  animation: caer 24s linear infinite;
+}
+@keyframes caer {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 320px 320px, -460px 460px; }
+}
+@media (prefers-reduced-motion: reduce) { body::after { animation: none; } }
+
+/* Portada con marco, flor y calavera */
+.hero {
+  position: relative;
+  margin-top: 28px;
+  padding: 40px 150px 36px 84px;
+  border: 1px solid #ff9f1c88;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #4a1d6a88, #26143a88);
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  left: -22px; top: -22px;
+  width: 100px; height: 100px;
+  background: var(--flor) center / contain no-repeat;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: 26px; bottom: 14px;
+  width: 90px; height: 108px;
+  background: var(--calavera) center / contain no-repeat;
+}
+@media (max-width: 700px) {
+  .hero { padding: 70px 20px 24px; }
+  .hero::after { display: none; }
+}
+
+/* Paradas clicables dentro de la ventana de ruta */
+.paradas li.clicable { cursor: pointer; transition: transform .15s ease; }
+.paradas li.clicable:hover, .paradas li.clicable:focus-visible { transform: translateX(4px); outline: none; }
+.paradas li.clicable:hover strong, .paradas li.clicable:focus-visible strong { color: var(--calendula); }
+
+/* Reservaciones: cantidades del menú y formulario */
+.precio-cantidad { display: inline-flex; align-items: center; gap: 12px; }
+.platillos li span.cantidad { display: inline-flex; align-items: center; gap: 8px; color: var(--texto); }
+.cantidad button { padding: 1px 10px; font-size: 1rem; border-radius: 6px; line-height: 1.4; }
+.form-reserva { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; margin: 10px 0 6px; }
+.form-reserva label:last-child { grid-column: 1 / -1; }
+button:disabled { opacity: .6; cursor: not-allowed; }
+
+/* Estados de reservación y botones del panel */
+.estado-confirmada { background: #2ec4b622; color: #2ec4b6; border-color: #2ec4b655; }
+.estado-cancelada { background: #f0439a22; color: #ff7b9c; border-color: #f0439a55; }
+.acciones button { margin: 2px 6px 2px 0; padding: 6px 10px; font-size: .8rem; }
